@@ -2970,7 +2970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02fe30589b0ce94897b79fa80fcb36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   countText: {fileID: 1191623302}
   livesText: {fileID: 476013139}
   winTextObject: {fileID: 639005130}
