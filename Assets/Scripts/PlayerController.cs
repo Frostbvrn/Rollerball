@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject lossTextObject;
     public GameObject playerBall;
+    public float jumpForce = 5;
 
     private Rigidbody rb;
     private int count;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     private Vector3 startPos;
+    private int jumpCount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -90,4 +92,25 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    void Update()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, 1.02f) && )
+        {
+            jumpCount = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {    if (jumpCount == 1)
+            {  
+                jumpCount = jumpCount - 1;
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            else if (jumpCount == 0)
+            {  
+                jumpCount = jumpCount - 1;
+                rb.AddForce(Vector3.up * (jumpForce * 2), ForceMode.Impulse);
+            }
+        }
+    }
 }
+
