@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject lossTextObject;
     public GameObject playerBall;
+    public GameObject cam;
     public float jumpForce = 5;
 
     private Rigidbody rb;
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     private Vector3 startPos;
-    private int jumpCount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +45,15 @@ public class PlayerController : MonoBehaviour
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
+
+    //void OnLook(InputValue rot)
+    //{
+    //    Vector2 inputRot=rot.Get<Vector2>();
+    //    Vector3 camRot=cam.transform.rotation.eulerAngles;
+    //    camRot.x+=inputRot.y;
+    //    camRot.y+=inputRot.x;
+    //    cam.transform.rotation=Quaternion.Euler(camRot);
+    //}
 
     void SetCountText()
     {
@@ -89,27 +98,29 @@ public class PlayerController : MonoBehaviour
             if(isGameWon == false)
             lives = lives - 1;
             SetCountText();
+
+            rb. velocity = new Vector3(0.0f,0.0f,0.0f);
         }
         
     }
 
     void Update()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 1.02f) && )
-        {
-            jumpCount = 1;
-        }
         if (Input.GetKeyDown(KeyCode.Space))
-        {    if (jumpCount == 1)
             {  
-                jumpCount = jumpCount - 1;
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
-            else if (jumpCount == 0)
-            {  
-                jumpCount = jumpCount - 1;
-                rb.AddForce(Vector3.up * (jumpForce * 2), ForceMode.Impulse);
-            }
+         transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
+
+        if (Physics.Raycast(transform.position, Vector3.down, 0.4f))
+        {
+            transform.position = startPos;
+
+            if(isGameWon == false)
+            lives = lives - 1;
+            SetCountText();
+
+            rb. velocity = new Vector3(0.0f,0.0f,0.0f);
         }
     }
 }
