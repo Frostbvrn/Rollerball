@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool isGameWon;
     private float movementX;
     private float movementY;
-    private Vector3 startPos;
+    public Vector3 startPos;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             isGameWon = true;
         }
     }
-    void SetLifeText()
+    public void SetLifeText()
     {
         livesText.text = "Lives: " + lives.ToString();
         //if(win == 0)
@@ -76,6 +76,12 @@ public class PlayerController : MonoBehaviour
             lossTextObject.SetActive(true);
             playerBall.SetActive(false);
         }
+    }
+
+    public void resetPos()
+    {
+        transform.position = startPos;
+        rb. velocity = new Vector3(0.0f,0.0f,0.0f);
     }
 
     void FixedUpdate()
@@ -95,16 +101,16 @@ public class PlayerController : MonoBehaviour
         //    SetCountText();
         //}
 
-        if(other.gameObject.CompareTag("Death"))
-        {
-            transform.position = startPos;
+        //if(other.gameObject.CompareTag("Death"))
+        //{
+        //    transform.position = startPos;
 
-            if(isGameWon == false)
-            lives = lives - 1;
-            SetLifeText();
+        //    if(isGameWon == false)
+        //    lives = lives - 1;
+        //    SetLifeText();
 
-            rb. velocity = new Vector3(0.0f,0.0f,0.0f);
-        }
+        //    rb. velocity = new Vector3(0.0f,0.0f,0.0f);
+        //}
         
     }
 
@@ -127,16 +133,16 @@ public class PlayerController : MonoBehaviour
             }
          transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
 
-        if (Physics.Raycast(transform.position, Vector3.down, 0.4f))
-        {
-            transform.position = startPos;
+        //if (Physics.Raycast(transform.position, Vector3.down, 0.4f))
+        //{
+        //    transform.position = startPos;
 
-            if(isGameWon == false)
-            lives = lives - 1;
-            SetLifeText();
+        //    if(isGameWon == false)
+        //    lives = lives - 1;
+        //    SetLifeText();
 
-            rb. velocity = new Vector3(0.0f,0.0f,0.0f);
-        }
+        //    rb. velocity = new Vector3(0.0f,0.0f,0.0f);
+        //}
     }
 }
 
