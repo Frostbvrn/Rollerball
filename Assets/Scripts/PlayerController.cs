@@ -57,10 +57,10 @@ public class PlayerController : MonoBehaviour
     //    cam.transform.rotation=Quaternion.Euler(camRot);
     //}
 
-    void SetCountText()
+    public void SetCountText()
     {
         countText.text = "Score: " + count.ToString();
-        if(count >= 16)
+        if(count >= 5)
         {
             winTextObject.SetActive(true);
             isGameWon = true;
@@ -143,6 +143,8 @@ public class PlayerController : MonoBehaviour
 
         //    rb. velocity = new Vector3(0.0f,0.0f,0.0f);
         //}
+
+        // Debug.Log(isGameWon);
     }
 }
 

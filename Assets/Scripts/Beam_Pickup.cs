@@ -7,6 +7,7 @@ public class Beam_Pickup : MonoBehaviour
 {
     public GameObject winTextObject;
     public TextMeshProUGUI countText;
+    public PlayerController pC;
 
     static int count;
 
@@ -25,9 +26,10 @@ public class Beam_Pickup : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Score: " + count.ToString();
-        if(count >= 16)
+        if(count >= 5)
         {
             winTextObject.SetActive(true);
+            pC.isGameWon = true;
         }
     }
 

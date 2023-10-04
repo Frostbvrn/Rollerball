@@ -5,17 +5,19 @@ using TMPro;
 
 public class deathHitbox : MonoBehaviour
 {
-    private static PlayerController playerController;
+    public PlayerController pC;
     private Rigidbody rb;
     public TextMeshProUGUI livesText;
     public GameObject lossTextObject;
     public GameObject playerBall;
+    public Vector3 startPos;
 
     public int lives;
     // Start is called before the first frame update
     void Start()
     {
         lives = 3;
+        startPos = playerBall.transform.position;
     }
 
     // Update is called once per frame
@@ -40,11 +42,13 @@ public class deathHitbox : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Death"))
         {
-            //transform.playerBall.position = playerController.startPos;
+            playerBall.transform.position = startPos;
 
-            //if(playerController.isGameWon == false)
+            if(pC.isGameWon == false)
+            {
             lives = lives - 1;
             SetLifeText();
+            }
 
             //rb.velocity = new Vector3(0.0f,0.0f,0.0f);
             Debug.Log("hit");
