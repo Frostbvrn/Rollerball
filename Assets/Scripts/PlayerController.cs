@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject lossTextObject;
     public GameObject playerBall;
-    public GameObject cam;
+    public GameObject Beam;
     public float jumpForce = 5;
 
     private Rigidbody rb;
-    private int count;
-    private int lives;
-    private bool isGameWon;
+    static int count;
+    public int lives;
+    public bool isGameWon;
     private float movementX;
     private float movementY;
     private Vector3 startPos;
@@ -32,8 +32,10 @@ public class PlayerController : MonoBehaviour
         isGameWon = false;
 
         SetCountText();
+        SetLifeText();
         winTextObject.SetActive(false);
         lossTextObject.SetActive(false);
+        Beam.SetActive(false);
 
         startPos = transform.position;
     }
@@ -63,7 +65,9 @@ public class PlayerController : MonoBehaviour
             winTextObject.SetActive(true);
             isGameWon = true;
         }
-
+    }
+    void SetLifeText()
+    {
         livesText.text = "Lives: " + lives.ToString();
         //if(win == 0)
         // {return;}
@@ -83,13 +87,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Pickup"))
-        {
-            other.gameObject.SetActive(false);
-            count = count + 1;
+        //if(other.gameObject.CompareTag("Pickup"))
+        //{
+        //    other.gameObject.SetActive(false);
+        //    count = count + 1;
 
-            SetCountText();
-        }
+        //    SetCountText();
+        //}
 
         if(other.gameObject.CompareTag("Death"))
         {
@@ -97,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
             if(isGameWon == false)
             lives = lives - 1;
-            SetCountText();
+            SetLifeText();
 
             rb. velocity = new Vector3(0.0f,0.0f,0.0f);
         }
@@ -106,9 +110,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Bounces up player when spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space))
             {  
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+        
+        // Toggles tractor beam
+        if (Input.GetMouseButtonDown(0))
+            {  
+                Beam.SetActive(true);
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                Beam.SetActive(false);
             }
          transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
 
@@ -118,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
             if(isGameWon == false)
             lives = lives - 1;
-            SetCountText();
+            SetLifeText();
 
             rb. velocity = new Vector3(0.0f,0.0f,0.0f);
         }
