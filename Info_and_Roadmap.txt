@@ -1,0 +1,21 @@
+Moo Fighter 0.1
+
+The player plays as a UFO that is supposed to collect as many cows as possible, in whatever way it can.
+
+I wanted to make the very base for the game, without many of the features that I want to add later, so I can give myself enough time to actually finish what I planned for the two weeks.
+These two weeks was mostly code-based, funnily enough. The part that took the longest was learning how to make a child collidor on the UFO that respawns the UFO itself. 
+The reason why I did this is because the beam object to collect the cows would collide with the water, since the UFO model (the parent of the beam object) checked for collision with the water.
+Huge thanks to Evan for the help with this :D
+
+Current features:
+- The player controls a UFO that slowly falls down, and can float up by pressing spacebar. 
+- Holding left click toggles on and off the tractor beam, which can be used to pick up the cows across the two islands.
+- You can collect the cows to increase your score, winning when you pick up all of them.
+- Touching the water will respawn the player and subtract a life.
+
+Planned features:
+- Expand the play area, adding more cows, structures, and pens.
+- You don't score cows instantly, you need to hover over them with the tractor beam for a little while to score them.
+- You can "grab" non-cow objects like trees and move them around with your beam.
+- Once you get all the cows, you need to escape into space. Gonna add a plane up high that makes you win if you have collected all the cows.
+
