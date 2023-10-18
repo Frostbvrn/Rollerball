@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused == false)
+        {
         // Bounces up player when spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space))
             {  
@@ -132,7 +134,7 @@ public class PlayerController : MonoBehaviour
                 Beam.SetActive(false);
             }
          transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
-
+        }
         //if (Physics.Raycast(transform.position, Vector3.down, 0.4f))
         //{
         //    transform.position = startPos;
