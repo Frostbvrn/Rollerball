@@ -331,7 +331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V1.4
+  m_text: V1.5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84e669596e38fd94984206a41737b9be, type: 2}
   m_sharedMaterial: {fileID: 4500187074903677586, guid: 84e669596e38fd94984206a41737b9be,
@@ -1458,12 +1458,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Controls:
 
+
     Move - WASD
 
     Jump - Space Bar
 
     Activate Beam -
-    Left Click'
+    Left Click
+
+    Fall Faster - Left Shift'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84e669596e38fd94984206a41737b9be, type: 2}
   m_sharedMaterial: {fileID: 4500187074903677586, guid: 84e669596e38fd94984206a41737b9be,
@@ -1527,7 +1530,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -16.458672, y: 0, z: -65.14092, w: -146.24522}
+  m_margin: {x: -16.458672, y: 0, z: -160.05264, w: -146.24522}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1557,7 +1560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225.5425, y: 76.6}
+  m_AnchoredPosition: {x: -270, y: 76.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1456774921
@@ -1929,7 +1932,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 8}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 500, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

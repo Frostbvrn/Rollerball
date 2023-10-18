@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public GameObject playerBall;
     public GameObject Beam;
     public float jumpForce = 5;
-
     private Rigidbody rb;
     static int count;
     public int lives;
@@ -22,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public Vector3 startPos;
+    private ConstantForce cForce;
+    private Vector3 forceStrength;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,10 @@ public class PlayerController : MonoBehaviour
         Beam.SetActive(false);
 
         startPos = transform.position;
+
+        cForce = GetComponent<ConstantForce>();
+        forceStrength = new Vector3(0f, -9.81f, 0f);
+        cForce.force = forceStrength;
     }
 
     void OnMove(InputValue movementValue)
@@ -47,15 +52,6 @@ public class PlayerController : MonoBehaviour
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
-
-    //void OnLook(InputValue rot)
-    //{
-    //    Vector2 inputRot=rot.Get<Vector2>();
-    //    Vector3 camRot=cam.transform.rotation.eulerAngles;
-    //    camRot.x+=inputRot.y;
-    //    camRot.y+=inputRot.x;
-    //    cam.transform.rotation=Quaternion.Euler(camRot);
-    //}
 
     public void SetCountText()
     {
@@ -91,29 +87,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //if(other.gameObject.CompareTag("Pickup"))
-        //{
-        //    other.gameObject.SetActive(false);
-        //    count = count + 1;
-
-        //    SetCountText();
-        //}
-
-        //if(other.gameObject.CompareTag("Death"))
-        //{
-        //    transform.position = startPos;
-
-        //    if(isGameWon == false)
-        //    lives = lives - 1;
-        //    SetLifeText();
-
-        //    rb. velocity = new Vector3(0.0f,0.0f,0.0f);
-        //}
-        
-    }
-
     void Update()
     {
         if (PauseMenu.isPaused == false)
@@ -122,6 +95,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             {  
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+
+        // Speeds up descent when shift is held
+        if (Input.GetKey(KeyCode.LeftShift))
+            {  
+                forceStrength = new Vector3(0f, -19.62f, 0f);
+                cForce.force = forceStrength;
+            }
+            else
+            {
+                forceStrength = new Vector3(0f, -9.81f, 0f);
+                cForce.force = forceStrength;
             }
         
         // Toggles tractor beam
@@ -135,18 +120,6 @@ public class PlayerController : MonoBehaviour
             }
          transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
         }
-        //if (Physics.Raycast(transform.position, Vector3.down, 0.4f))
-        //{
-        //    transform.position = startPos;
-
-        //    if(isGameWon == false)
-        //    lives = lives - 1;
-        //    SetLifeText();
-
-        //    rb. velocity = new Vector3(0.0f,0.0f,0.0f);
-        //}
-
-        // Debug.Log(isGameWon);
     }
 }
 
