@@ -24,7 +24,7 @@ public class Beam_Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(pC.isGameWon == true)
+        if(pC.isGameWon == false)
         {
         score = score - 1;
         }
