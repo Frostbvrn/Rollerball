@@ -9,14 +9,17 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI scoreText;
     public GameObject winTextObject;
     public GameObject lossTextObject;
+    public GameObject scoreTextObject;
     public GameObject playerBall;
     public GameObject Beam;
     public float jumpForce = 5;
     private Rigidbody rb;
     static int count;
     public int lives;
+    public int score;
     public bool isGameWon;
     private float movementX;
     private float movementY;
@@ -30,12 +33,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         count = 0;
         lives = 3;
+        score = 0;
         isGameWon = false;
 
         SetCountText();
         SetLifeText();
         winTextObject.SetActive(false);
         lossTextObject.SetActive(false);
+        scoreTextObject.SetActive(false);
         Beam.SetActive(false);
 
         startPos = transform.position;
@@ -55,11 +60,12 @@ public class PlayerController : MonoBehaviour
 
     public void SetCountText()
     {
-        countText.text = "Score: " + count.ToString();
-        if(count >= 5)
+        countText.text = "Cows: " + count.ToString();
+        if(count >= 7)
         {
             winTextObject.SetActive(true);
             isGameWon = true;
+            scoreTextObject.SetActive(true);
         }
     }
     public void SetLifeText()
@@ -103,7 +109,7 @@ public class PlayerController : MonoBehaviour
                 forceStrength = new Vector3(0f, -19.62f, 0f);
                 cForce.force = forceStrength;
             }
-            else
+        else
             {
                 forceStrength = new Vector3(0f, -9.81f, 0f);
                 cForce.force = forceStrength;
