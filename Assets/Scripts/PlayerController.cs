@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
             {
                 Beam.SetActive(false);
             }
-         transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
         }
     }
 }
