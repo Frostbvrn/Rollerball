@@ -6,21 +6,25 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
+    [Header("Text Options")]
     public TextMeshProUGUI countText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
     public GameObject winTextObject;
     public GameObject lossTextObject;
     public GameObject scoreTextObject;
-    public GameObject playerBall;
-    public GameObject Beam;
-    public float jumpForce = 5;
-    private Rigidbody rb;
     static int count;
     public int lives;
     public int score;
     public bool isGameWon;
+
+    [Header("Game Objects")]
+    public GameObject playerBall;
+    public GameObject Beam;
+    [Header("Movement Options")]
+    public float jumpForce = 5;
+    private Rigidbody rb;
+    public float speed = 0;
     private float movementX;
     private float movementY;
     public Vector3 startPos;
