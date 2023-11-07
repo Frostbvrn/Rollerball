@@ -6,7 +6,6 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController controller;
     public float speed = 0;
     public TextMeshProUGUI countText;
     public TextMeshProUGUI livesText;
@@ -16,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public GameObject scoreTextObject;
     public GameObject playerBall;
     public GameObject Beam;
-    public Transform cam;
     public float jumpForce = 5;
     private Rigidbody rb;
     static int count;
@@ -28,10 +26,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 startPos;
     private ConstantForce cForce;
     private Vector3 forceStrength;
-    public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
-    float targetAngle;
-    float angle;
 
     // Start is called before the first frame update
     void Start()
@@ -56,13 +50,13 @@ public class PlayerController : MonoBehaviour
         cForce.force = forceStrength;
     }
 
-    /*void OnMove(InputValue movementValue)
+    void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
         movementX = movementVector.x;
         movementY = movementVector.y;
-    }*/
+    }
 
     public void SetCountText()
     {
@@ -92,12 +86,12 @@ public class PlayerController : MonoBehaviour
         rb. velocity = new Vector3(0.0f,0.0f,0.0f);
     }
 
-    /*void FixedUpdate()
+    void FixedUpdate()
     {
-        //Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        
-        rb.AddForce(moveDir * speed);
-    }*/
+        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+
+        rb.AddForce(movement * speed);
+    }
 
     void Update()
     {
@@ -130,24 +124,7 @@ public class PlayerController : MonoBehaviour
             {
                 Beam.SetActive(false);
             }
-        // Rotates UFO
-        //transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
-
-        //Player Controller
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-        if (direction.magnitude > 0.1f)
-            {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
-            }
+        transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
         }
     }
 }
-
