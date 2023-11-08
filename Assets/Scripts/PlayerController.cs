@@ -54,13 +54,13 @@ public class PlayerController : MonoBehaviour
         cForce.force = forceStrength;
     }
 
-    void OnMove(InputValue movementValue)
-    {
-        Vector2 movementVector = movementValue.Get<Vector2>();
+    // void OnMove(InputValue movementValue)
+    // {
+    //     Vector2 movementVector = movementValue.Get<Vector2>();
 
-        movementX = movementVector.x;
-        movementY = movementVector.y;
-    }
+    //     movementX = movementVector.x;
+    //     movementY = movementVector.y;
+    // }
 
     public void SetCountText()
     {
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
             {
                 Beam.SetActive(false);
             }
-        transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
+        // transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
         }
     }
 }

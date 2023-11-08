@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    public float movementX;
-    public float movementY;
+    // public float movementX;
+    // public float movementY;
 
     Vector3 moveDirection;
     Rigidbody rb;
@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // MovePlayer();
-        Vector3 Movement = new Vector3(movementX, 0.0f,movementY);
-        rb.AddForce(Movement * moveSpeed);
+        MovePlayer();
+        // Vector3 Movement = new Vector3(movementX, 0.0f,movementY);
+        // rb.AddForce(Movement * moveSpeed);
     }
 
     private void MyInput()
@@ -42,19 +42,19 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
     }
 
-    // private void MovePlayer()
-    // {
-    //     // calculate movement direction
-    //     moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-    //     rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-    // }
-
-    void OnMove(InputValue movementValue)
+    private void MovePlayer()
     {
-        Vector2 MovementVector = movementValue.Get<Vector2>();
-        movementX = MovementVector.x;
-        movementY = MovementVector.y;
-        Debug.Log(movementValue.ToString());
+        // calculate movement direction
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Debug.Log(orientation.forward);
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
+
+    // void OnMove(InputValue movementValue)
+    // {
+    //     Vector2 MovementVector = movementValue.Get<Vector2>();
+    //     movementX = MovementVector.x;
+    //     movementY = MovementVector.y;
+    //     Debug.Log(movementValue.ToString());
+    // }
 }
