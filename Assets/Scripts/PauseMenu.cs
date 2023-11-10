@@ -34,6 +34,8 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(true);
         Time.timeScale = 0;
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ResumeGame ()
@@ -41,6 +43,8 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void OnReturnButton ()
     {
