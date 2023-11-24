@@ -331,7 +331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V3.3
+  m_text: V3.5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84e669596e38fd94984206a41737b9be, type: 2}
   m_sharedMaterial: {fileID: 4500187074903677586, guid: 84e669596e38fd94984206a41737b9be,
@@ -2131,6 +2131,8 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   pC: {fileID: 0}
   score: 0
+  cowBonus: 0
+  goalCount: 0
 --- !u!64 &1984536486
 MeshCollider:
   m_ObjectHideFlags: 0

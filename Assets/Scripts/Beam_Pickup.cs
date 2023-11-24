@@ -12,13 +12,14 @@ public class Beam_Pickup : MonoBehaviour
     public PlayerController pC;
 
     static int count;
-    public int score;
+    public int score = 0;
+    public int cowBonus = 0;
+    public int goalCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         count = 0;
-        score = 100000;
     }
 
     // Update is called once per frame
@@ -26,14 +27,14 @@ public class Beam_Pickup : MonoBehaviour
     {   
         if(pC.isGameWon == false)
         {
-        score = score - 1;
+        score = score - 5;
         }
     }
 
     void SetCountText()
     {
         countText.text = "Cows: " + count.ToString();
-        if(count >= 7 && pC.isGameWon == false)
+        if(count >= goalCount && pC.isGameWon == false)
         {
             winTextObject.SetActive(true);
             pC.isGameWon = true;
@@ -48,7 +49,7 @@ public class Beam_Pickup : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
-            score = score + 15000;
+            score = score + cowBonus;
             SetCountText();
         }
     }
