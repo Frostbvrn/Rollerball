@@ -38,6 +38,10 @@ public class Beam_Pickup : MonoBehaviour
         {
             winTextObject.SetActive(true);
             pC.isGameWon = true;
+            if (score < 0)
+            {
+                score = 0;
+            }
             scoreTextObject.SetActive(true);
             scoreText.text = "Score: " + score.ToString();
         }
